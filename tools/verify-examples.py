@@ -13,7 +13,7 @@ This extracts each ```csharp block, wraps it in a method, and builds the lot aga
 the real published VisioForge packages. It is not part of `dotnet test` — it restores
 from nuget.org and takes tens of seconds — so run it whenever ExampleTools.cs changes:
 
-    python3 MCP/tools/verify-examples.py
+    python3 tools/verify-examples.py
 
 Exit codes: 0 all snippets compile · 1 at least one does not · 2 could not run.
 

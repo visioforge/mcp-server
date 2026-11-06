@@ -12,11 +12,12 @@ echo.
 
 REM Set paths
 rem The VisioForge SDK checkout the index is built from: VF_SDK_ROOT, or a sibling directory.
-if defined VF_SDK_ROOT (set ROOT_DIR=%VF_SDK_ROOT%) else (set ROOT_DIR=%~dp0..\MediaFrameworkDotnet)
-if not exist "%ROOT_DIR%\_SOURCE" (
-    echo ERROR: no SDK checkout at %ROOT_DIR% ^(set VF_SDK_ROOT to the MediaFrameworkDotnet root^).
-    exit /b 1
-)
+set "ROOT_DIR=%VF_SDK_ROOT%"
+if not defined ROOT_DIR set "ROOT_DIR=%~dp0..\MediaFrameworkDotnet"
+rem Absolute: IndexBuilder and the tests run from other directories.
+for %%I in ("%ROOT_DIR%") do set "ROOT_DIR=%%~fI"
+if not exist "%ROOT_DIR%\_SOURCE\" echo ERROR: no SDK checkout at "%ROOT_DIR%" - set VF_SDK_ROOT to the MediaFrameworkDotnet root.& exit /b 1
+set "VF_SDK_ROOT=%ROOT_DIR%"
 set CORE_DIR=%ROOT_DIR%\_SOURCE\VisioForge.Core
 set CORE_PROJECT=%CORE_DIR%\VisioForge.Core.csproj
 set PACKAGE_CATALOG=%ROOT_DIR%\_SOURCE\VisioForge.PackageVersions.props

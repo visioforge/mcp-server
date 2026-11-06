@@ -2,7 +2,7 @@
 
 ## ✅ Complete Platform Coverage
 
-All deployment guides have been updated with **detailed per-platform deployment instructions** based on actual demo projects in `_SETUP\FILES\Demos`.
+All deployment guides have been updated with **detailed per-platform deployment instructions** based on the demo projects in the [public samples repository](https://github.com/visioforge/.Net-SDK-s-samples).
 
 ---
 

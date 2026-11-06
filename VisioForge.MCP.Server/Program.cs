@@ -2,7 +2,7 @@ using VisioForge.MCP.Server.Index;
 using VisioForge.MCP.Server.Resources;
 
 // The implementation version reported in the initialize handshake. The registry listing
-// version is separate: it lives in MCP/server.json and changes only when the listing does.
+// version is separate: it lives in server.json and changes only when the listing does.
 const string ServerVersion = "1.2.0";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -203,7 +203,7 @@ app.MapGet("/", () => Results.Ok(new
 
 // Discovery document. This 404'd until now: nginx proxies `location /` straight
 // to Kestrel, and Kestrel had no route for it, so agents probing the well-known
-// path got an ASP.NET 404 rather than a manifest. It serves MCP/server.json — the
+// path got an ASP.NET 404 rather than a manifest. It serves server.json — the
 // document published to the official MCP Registry — with every remote URL moved to this
 // deployment's domain, so the listing has one source. Parsed once at startup; a missing
 // or malformed file is a startup WARNING and a 404 on this route alone, never on /mcp.
@@ -251,7 +251,7 @@ if (DateTimeOffset.TryParse(indexService.GeneratedAt, out var indexGenerated)
     Console.Error.WriteLine(
         $"WARNING: the API index is {(int)(DateTimeOffset.UtcNow - indexGenerated).TotalDays} days old. "
         + "Package pins, class summaries and deployment guides are all served from it. "
-        + "Rebuild it with MCP/build-mcp.sh on a machine that has VisioForge.Core.xml.");
+        + "Rebuild it with build-mcp.sh on a machine that has VisioForge.Core.xml.");
 }
 
 if (indexService.Data.DeploymentGuides.Count == 0)

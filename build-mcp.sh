@@ -18,6 +18,8 @@ if [ ! -d "$SDK_ROOT_INPUT/_SOURCE" ]; then
     exit 1
 fi
 ROOT_DIR="$(cd "$SDK_ROOT_INPUT" && pwd)"
+# Absolute, for the test step: it runs from the test output directory.
+export VF_SDK_ROOT="$ROOT_DIR"
 
 # Set paths
 CORE_DIR="$ROOT_DIR/_SOURCE/VisioForge.Core"

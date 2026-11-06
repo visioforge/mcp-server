@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Deploy the MCP server to the droplet from a workstation that has the SSH key.
+# Deploy the MCP server to its host from a workstation that has the SSH key.
 #
 # Building here and shipping the artifacts keeps the server free of any source checkout or
 # build toolchain: the server is framework-dependent (--self-contained false) and the host
@@ -13,7 +13,8 @@
 # that is running is touched until the payload has arrived intact.
 #
 # Usage:
-#   bash deploy/deploy-from-workstation.sh [--key PATH] [--host HOST] [--dry-run]
+#   bash deploy/deploy-from-workstation.sh --host HOST --key PATH [--dry-run]
+#   (or MCP_HOST / MCP_SSH_KEY in the environment; both are required)
 #
 # Exit codes:
 #   0  deployed and healthy

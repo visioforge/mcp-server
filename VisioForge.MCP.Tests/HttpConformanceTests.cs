@@ -218,7 +218,7 @@ public class HttpConformanceTests : IClassFixture<WebApplicationFactory<Program>
         Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
         var body = await resp.Content.ReadAsStringAsync();
 
-        // Served == MCP/server.json, the registry listing, with only the remote URL
+        // Served == server.json, the registry listing, with only the remote URL
         // moved to this deployment's domain.
         var expected = System.Text.Json.Nodes.JsonNode.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "server.json")))!;
         expected["remotes"]![0]!["url"] = "https://mcp.test.example/mcp";
@@ -244,7 +244,7 @@ public class HttpConformanceTests : IClassFixture<WebApplicationFactory<Program>
         // Tools are deliberately absent: clients enumerate them over tools/list.
         Assert.False(root.TryGetProperty("tools", out _), "the manifest must not list tools");
 
-        // The served manifest is MCP/server.json, the document published to the official
+        // The served manifest is server.json, the document published to the official
         // MCP Registry, whose schema rejects a description over 100 characters.
         Assert.True(root.GetProperty("description").GetString()!.Length <= 100, "description exceeds the registry's 100-character limit");
     }
