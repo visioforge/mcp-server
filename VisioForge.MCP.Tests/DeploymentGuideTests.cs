@@ -235,14 +235,22 @@ public class DeploymentGuideTests
     // The package catalog lives in the SDK checkout: VF_SDK_ROOT, or a sibling MediaFrameworkDotnet.
     private static string SdkRoot()
     {
-        // A relative VF_SDK_ROOT is taken from the repository root, whichever directory the tests run in.
+        // The test host runs in its output directory, so a relative VF_SDK_ROOT would not mean what it
+        // means to the shell that set it; the build scripts pass an absolute one.
         var root = Environment.GetEnvironmentVariable("VF_SDK_ROOT");
-        root = Path.GetFullPath(string.IsNullOrEmpty(root) ? Path.Combine("..", "MediaFrameworkDotnet") : root, McpRoot());
+        if (string.IsNullOrEmpty(root))
+        {
+            root = Path.GetFullPath(Path.Combine(McpRoot(), "..", "MediaFrameworkDotnet"));
+        }
+        else if (!Path.IsPathRooted(root))
+        {
+            throw new ArgumentException($"VF_SDK_ROOT must be an absolute path, got '{root}'.");
+        }
 
         if (!Directory.Exists(Path.Combine(root, "_SOURCE")))
         {
             throw new DirectoryNotFoundException(
-                $"No SDK checkout at {Path.GetFullPath(root)}; set VF_SDK_ROOT to the MediaFrameworkDotnet root.");
+                $"No SDK checkout at {root}; set VF_SDK_ROOT to the MediaFrameworkDotnet root.");
         }
 
         return root;

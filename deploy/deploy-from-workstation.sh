@@ -115,15 +115,17 @@ SSH=("$SSH_BIN" -i "$KEY" -o BatchMode=yes -o ConnectTimeout=15 "root@$HOST")
 say "Preflight"
 command -v dotnet >/dev/null || die "dotnet is not on PATH."
 command -v tar    >/dev/null || die "tar is not on PATH."
+command -v git    >/dev/null || die "git is not on PATH."
 [ -f "$INDEX" ] || die "$INDEX is missing — this is not an mcp-server checkout."
 # What ships is the working tree, so it must be a pushed commit: production should never run
-# code, or an index, that is not in the repository.
+# code, or an index, that is not in the repository. Any pushed commit will do — a branch tip,
+# or an older tag checked out detached to roll back to. A dry run reports instead of refusing,
+# so a freshly rebuilt index can be checked before it is committed.
+not_shippable() { if [ "$DRY_RUN" = "1" ]; then echo "  WARNING: $1 — a real run refuses this." >&2; else die "$1"; fi; }
 DIRTY="$(git -C "$MCP_DIR" status --porcelain)" || die "$MCP_DIR is not a git checkout."
-[ -z "$DIRTY" ] || die "uncommitted changes in $MCP_DIR — commit and push them first:
+[ -z "$DIRTY" ] || not_shippable "uncommitted changes in $MCP_DIR — commit and push them first:
 $DIRTY"
-AHEAD="$(git -C "$MCP_DIR" log --oneline '@{u}..HEAD' 2>/dev/null)" || die "no upstream for the current branch in $MCP_DIR — push it first."
-[ -z "$AHEAD" ] || die "unpushed commits in $MCP_DIR — push them first:
-$AHEAD"
+[ -n "$(git -C "$MCP_DIR" branch -r --contains HEAD)" ] || not_shippable "HEAD ($(git -C "$MCP_DIR" rev-parse --short HEAD)) is on no pushed branch in $MCP_DIR — push it first."
 "${SSH[@]}" true 2>/dev/null || die "cannot reach root@$HOST with $KEY."
 echo "  host $HOST reachable, key $KEY"
 
