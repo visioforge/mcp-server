@@ -125,7 +125,13 @@ not_shippable() { if [ "$DRY_RUN" = "1" ]; then echo "  WARNING: $1 — a real r
 DIRTY="$(git -C "$MCP_DIR" status --porcelain)" || die "$MCP_DIR is not a git checkout."
 [ -z "$DIRTY" ] || not_shippable "uncommitted changes in $MCP_DIR — commit and push them first:
 $DIRTY"
+# Fetch first: a stale remote-tracking ref would call a behind clone current.
+git -C "$MCP_DIR" fetch --quiet || not_shippable "git fetch failed in $MCP_DIR — the checks below use stale remote refs."
 [ -n "$(git -C "$MCP_DIR" branch -r --contains HEAD)" ] || not_shippable "HEAD ($(git -C "$MCP_DIR" rev-parse --short HEAD)) is on no pushed branch in $MCP_DIR — push it first."
+# On a branch (not a detached rollback), being behind its upstream would ship older code.
+BEHIND="$(git -C "$MCP_DIR" log --oneline 'HEAD..@{u}' 2>/dev/null || true)"
+[ -z "$BEHIND" ] || not_shippable "$MCP_DIR is behind its upstream — pull first:
+$BEHIND"
 "${SSH[@]}" true 2>/dev/null || die "cannot reach root@$HOST with $KEY."
 echo "  host $HOST reachable, key $KEY"
 
