@@ -2,7 +2,8 @@
 REM VisioForge MCP Server Build Script
 REM This script builds VisioForge.Core, runs IndexBuilder, and builds the MCP Server
 
-setlocal enabledelayedexpansion
+rem Delayed expansion stays off until the paths are known: it would strip a '!' from them.
+setlocal disabledelayedexpansion
 set DOTNET_NOLOGO=1
 
 echo ========================================
@@ -18,6 +19,9 @@ rem Absolute: IndexBuilder and the tests run from other directories.
 for %%I in ("%ROOT_DIR%") do set "ROOT_DIR=%%~fI"
 if not exist "%ROOT_DIR%\_SOURCE\" echo ERROR: no SDK checkout at "%ROOT_DIR%" - set VF_SDK_ROOT to the MediaFrameworkDotnet root.& exit /b 1
 set "VF_SDK_ROOT=%ROOT_DIR%"
+set "PATH_CHECK=%ROOT_DIR%%~dp0"
+if not "%PATH_CHECK%"=="%PATH_CHECK:!=%" echo ERROR: a '!' in "%ROOT_DIR%" or "%~dp0" is not supported by this script.& exit /b 1
+setlocal enabledelayedexpansion
 set CORE_DIR=%ROOT_DIR%\_SOURCE\VisioForge.Core
 set CORE_PROJECT=%CORE_DIR%\VisioForge.Core.csproj
 set PACKAGE_CATALOG=%ROOT_DIR%\_SOURCE\VisioForge.PackageVersions.props
