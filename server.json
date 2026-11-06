@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.visioforge/sdk-docs",
+  "title": "VisioForge SDK Assistant",
+  "description": "VisioForge .NET SDK assistant: API reference, code examples and deployment guides.",
+  "version": "1.2.0",
+  "websiteUrl": "https://www.visioforge.com/",
+  "repository": {
+    "url": "https://github.com/visioforge/mcp-server",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://www.visioforge.com/apple-icon.png",
+      "mimeType": "image/png",
+      "sizes": ["256x256"]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.visioforge.com/mcp"
+    }
+  ]
+}

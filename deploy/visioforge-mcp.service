@@ -1,0 +1,43 @@
+# Domain: mcp.visioforge.com
+# MCP Endpoint: https://mcp.visioforge.com/mcp
+# Port 5001 (not 5000): another service already listens on 5000 on the host.
+# Keep ASPNETCORE_URLS below in step with proxy_pass in nginx.conf.
+
+[Unit]
+Description=VisioForge SDK MCP Server
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/visioforge-mcp
+ExecStart=/opt/visioforge-mcp/VisioForge.MCP.Server
+Restart=always
+RestartSec=5
+TimeoutStartSec=30
+TimeoutStopSec=15
+
+# Environment
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_URLS=http://localhost:5001
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=512M
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/visioforge-mcp/logs
+PrivateTmp=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=visioforge-mcp
+
+[Install]
+WantedBy=multi-user.target
