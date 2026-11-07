@@ -78,8 +78,9 @@ rem The Windows one, deliberately: it is the only XML carrying the legacy Direct
 rem cores (VideoCaptureCore, MediaPlayerCore, VideoEditCore), which are three of the ten
 rem names in SourceAnalyzer's core-class allowlist, and it documents ~59,500 members
 rem against ~39,900 for plain net10.0.
-for /f "delims=" %%x in ('dir /b /s "%CORE_DIR%\bin\Release\net*-windows*\VisioForge.Core.xml" 2^>nul') do (
-    if not defined CORE_XML set CORE_XML=%%x
+rem for /d, not dir /s: dir does not expand a wildcard in a directory component.
+for /d %%d in ("%CORE_DIR%\bin\Release\net*-windows*") do (
+    if not defined CORE_XML if exist "%%d\VisioForge.Core.xml" set "CORE_XML=%%d\VisioForge.Core.xml"
 )
 if not defined CORE_XML (
     rem No Windows target built: fall back to any, minus the legacy cores.
