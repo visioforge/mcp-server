@@ -214,6 +214,23 @@ public class ToolTests
     }
 
     [Fact]
+    public void ListSdkClasses_ProductsFirst_LegacyLast()
+    {
+        var index = CreateTestIndex();
+        index.Data.Classes.AddRange(
+        [
+            new ClassInfo { FullName = "VisioForge.Core.MediaPlayer.MediaPlayerCore", Name = "MediaPlayerCore", Namespace = "VisioForge.Core.MediaPlayer", IsCoreSDK = true, SdkModule = "Media Player SDK (Legacy)" },
+            new ClassInfo { FullName = "VisioForge.Core.FastImageProcessingX.ColorspaceConverterX", Name = "ColorspaceConverterX", Namespace = "VisioForge.Core.FastImageProcessingX", IsCoreSDK = true, SdkModule = "Fast Image Processing SDK X" },
+            new ClassInfo { FullName = "VisioForge.Core.MediaPlayerX.MediaPlayerCoreX", Name = "MediaPlayerCoreX", Namespace = "VisioForge.Core.MediaPlayerX", IsCoreSDK = true, SdkModule = "Media Player SDK X" },
+        ]);
+
+        var result = ClassTools.ListSdkClasses(index);
+        var headings = result.Split('\n').Where(l => l.StartsWith("## ")).Select(l => l[3..].Trim()).ToList();
+
+        Assert.Equal(["VideoCaptureCoreX", "MediaPlayerCoreX", "ColorspaceConverterX", "MediaPlayerCore"], headings);
+    }
+
+    [Fact]
     public void GetClassInfo_ValidName_ReturnsDetails()
     {
         var index = CreateTestIndex();
