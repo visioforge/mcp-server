@@ -8,6 +8,8 @@ namespace VisioForge.MCP.Server.Tools;
 [McpServerToolType]
 public static class ClassTools
 {
+    private static readonly string[] ProductClasses = ["VideoCaptureCoreX", "MediaPlayerCoreX", "VideoEditCoreX"];
+
     [McpServerTool(ReadOnly = true, Idempotent = true, OpenWorld = false), Description(
         "List core VisioForge SDK classes. These are the main entry-point classes for building media applications: " +
         "VideoCaptureCoreX (video capture/recording), VideoEditCoreX (video editing), " +
@@ -21,7 +23,15 @@ public static class ClassTools
         sb.AppendLine("# VisioForge Core SDK Classes\n");
         sb.AppendLine("These are the main entry-point classes for building media applications.\n");
 
-        foreach (var cls in coreClasses.OrderBy(c => c.Name))
+        // The three products lead, the legacy DirectShow cores trail. Alphabetical order put
+        // ColorspaceConverterX, MediaInfoReaderX and the legacy MediaPlayerCore ahead of every
+        // product class, and an agent takes the top of a list as the starting point (#542).
+        var ordered = coreClasses
+            .OrderBy(c => Array.IndexOf(ProductClasses, c.Name) is var i && i >= 0 ? i : ProductClasses.Length)
+            .ThenBy(c => c.SdkModule?.Contains("Legacy", StringComparison.OrdinalIgnoreCase) == true)
+            .ThenBy(c => c.Name, StringComparer.Ordinal);
+
+        foreach (var cls in ordered)
         {
             sb.AppendLine($"## {cls.Name}");
             if (!string.IsNullOrEmpty(cls.SdkModule))
