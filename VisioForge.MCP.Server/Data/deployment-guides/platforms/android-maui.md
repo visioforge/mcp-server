@@ -39,7 +39,7 @@ VisioForge SDK supports Android 5.0 (API 21) and later for mobile video applicat
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
 </ItemGroup>
 
 <ItemGroup Condition="$(TargetFramework.Contains('-android'))">

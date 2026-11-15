@@ -41,11 +41,11 @@ VisioForge SDK supports macOS 11+ (Big Sur and later) for both Apple Silicon (AR
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
 </ItemGroup>
 
 <ItemGroup Condition="$(TargetFramework.Contains('-macos'))">
-  <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.5" />
+  <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.13" />
 </ItemGroup>
 ```
 

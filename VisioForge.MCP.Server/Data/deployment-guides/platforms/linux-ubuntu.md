@@ -41,7 +41,7 @@ VisioForge SDK supports Linux (Ubuntu 20.04+, Debian 11+) for both headless serv
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
   <PackageReference Include="VisioForge.CrossPlatform.Core.Linux.x64" Version="2026.10.26" />
 </ItemGroup>
 ```

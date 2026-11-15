@@ -42,7 +42,7 @@ VisioForge SDK supports iOS native development without MAUI, using Xamarin.iOS o
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
   <PackageReference Include="VisioForge.CrossPlatform.Core.iOS" Version="2026.11.5" />
 </ItemGroup>
 ```

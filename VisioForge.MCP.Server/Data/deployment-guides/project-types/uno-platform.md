@@ -58,13 +58,13 @@ Uno Platform enables single-codebase apps for Windows, Android, iOS, and Mac Cat
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
   </ItemGroup>
 
   <!-- Windows-specific packages -->
   <ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.3" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
   </ItemGroup>
 
   <!-- Android-specific packages -->
@@ -80,7 +80,7 @@ Uno Platform enables single-codebase apps for Windows, Android, iOS, and Mac Cat
 
   <!-- Mac Catalyst-specific packages -->
   <ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.macCatalyst" Version="2026.11.5" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.13" />
   </ItemGroup>
 </Project>
 ```

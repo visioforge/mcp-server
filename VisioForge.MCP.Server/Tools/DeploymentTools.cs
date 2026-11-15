@@ -215,7 +215,7 @@ public static class DeploymentTools
         {
             sb.AppendLine($"</ItemGroup>\n");
             sb.AppendLine($"<ItemGroup Condition=\"$(TargetFramework.Contains('-maccatalyst'))\">");
-            sb.AppendLine($"  <PackageReference Include=\"VisioForge.CrossPlatform.Core.macCatalyst\" Version=\"{NugetPins.Apple}\" />");
+            sb.AppendLine($"  <PackageReference Include=\"VisioForge.CrossPlatform.Core.macOS\" Version=\"{NugetPins.Apple}\" />");
         }
         else if (platformLower == "macos")
         {

@@ -72,19 +72,19 @@ This guide covers the **multi-target approach**.
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.0.5" />
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
-    <PackageReference Include="VisioForge.DotNet.Core.UI.Avalonia" Version="2026.11.6" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+    <PackageReference Include="VisioForge.DotNet.Core.UI.Avalonia" Version="2026.11.13" />
   </ItemGroup>
 
   <!-- Windows-specific -->
   <ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.3" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
   </ItemGroup>
 
   <!-- macOS-specific -->
   <ItemGroup Condition="$(TargetFramework.Contains('-macos'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.5" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.13" />
   </ItemGroup>
 
   <!-- Android-specific -->

@@ -62,18 +62,18 @@ Blazor Server enables real-time video streaming to web browsers using SignalR. V
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
   </ItemGroup>
 
   <!-- Windows-specific packages -->
   <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.3" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
   </ItemGroup>
 
   <!-- macOS-specific packages -->
   <ItemGroup Condition="$(TargetFramework.Contains('-macos'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.5" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.macOS" Version="2026.11.13" />
   </ItemGroup>
 
   <!-- Linux uses system GStreamer -->

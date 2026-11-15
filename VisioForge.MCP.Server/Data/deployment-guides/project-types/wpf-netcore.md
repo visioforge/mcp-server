@@ -51,14 +51,14 @@ WPF on .NET 8+ provides modern, high-performance Windows desktop applications. V
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.3" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
   </ItemGroup>
 
   <!-- Optional: OpenCV for computer vision features -->
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <PackageReference Include="VisioForge.CrossPlatform.OpenCV.Windows.x64" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.CrossPlatform.OpenCV.Windows.x64" Version="2026.11.12.2" />
   </ItemGroup>
 </Project>
 ```

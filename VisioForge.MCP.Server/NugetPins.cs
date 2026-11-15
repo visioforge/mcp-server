@@ -30,7 +30,7 @@ internal static class NugetPins
     /// constant rather than a silent ride on this one, which would emit a version
     /// that does not exist and fail restore with NU1102.
     /// </summary>
-    public const string Windows = "2026.11.3";
+    public const string Windows = "2026.11.12";
 
     /// <summary>VisioForge.CrossPlatform.Core.Linux.x64.</summary>
     public const string Linux = "2026.10.26";
@@ -41,11 +41,11 @@ internal static class NugetPins
     /// <summary>VisioForge.CrossPlatform.Core.iOS.</summary>
     public const string IOS = "2026.11.5";
 
-    /// <summary>VisioForge.CrossPlatform.Core.macOS and Core.macCatalyst.</summary>
-    public const string Apple = "2026.11.5";
+    /// <summary>VisioForge.CrossPlatform.Core.macOS, which Mac Catalyst apps reference as well.</summary>
+    public const string Apple = "2026.11.13";
 
     /// <summary>VisioForge.CrossPlatform.OpenCV.Windows.x64.</summary>
-    public const string OpenCV = "2026.11.3";
+    public const string OpenCV = "2026.11.12.2";
 
     /// <summary>
     /// The Android Java bindings project the demos reference. X10 is what the demo

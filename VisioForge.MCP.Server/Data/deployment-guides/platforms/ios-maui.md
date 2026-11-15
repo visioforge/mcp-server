@@ -41,7 +41,7 @@ VisioForge SDK supports iOS 13.0 and later for iPhone and iPad video application
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
 </ItemGroup>
 
 <ItemGroup Condition="$(TargetFramework.Contains('-ios'))">

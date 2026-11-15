@@ -41,7 +41,7 @@ VisioForge SDK supports Android native development without MAUI, using Xamarin.A
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
   <PackageReference Include="VisioForge.CrossPlatform.Core.Android" Version="2026.11.5" />
 </ItemGroup>
 

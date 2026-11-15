@@ -51,9 +51,9 @@ Windows Forms on .NET 8+ provides a proven, efficient framework for Windows desk
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.6" />
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.3" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.3" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
   </ItemGroup>
 </Project>
 ```
