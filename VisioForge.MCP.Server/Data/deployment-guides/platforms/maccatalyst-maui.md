@@ -40,7 +40,7 @@ Mac Catalyst allows iOS apps to run natively on macOS. VisioForge SDK supports M
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.21" />
 </ItemGroup>
 
 <ItemGroup Condition="$(TargetFramework.Contains('-maccatalyst'))">
