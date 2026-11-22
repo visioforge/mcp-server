@@ -77,6 +77,18 @@ builder.Services.AddMcpServer(options =>
     o.MaxIdleSessionCount = 1_000;
 })
 .WithToolsFromAssembly()
+// Every successful tool answer ends with a link to the documentation, tagged so the site's
+// analytics can tell visits that started in a coding agent from the rest.
+.WithRequestFilters(filters => filters.AddCallToolFilter(next => async (context, cancellationToken) =>
+{
+    var result = await next(context, cancellationToken);
+    if (result.IsError != true)
+        result.Content.Add(new ModelContextProtocol.Protocol.TextContentBlock
+        {
+            Text = $"VisioForge documentation: https://www.visioforge.com/help/?utm_source=mcp&utm_medium={context.Params?.Name}",
+        });
+    return result;
+}))
 .WithPromptsFromAssembly()
 .WithListResourcesHandler((ctx, ct) =>
 {

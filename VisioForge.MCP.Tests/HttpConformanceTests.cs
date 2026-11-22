@@ -183,6 +183,45 @@ public class HttpConformanceTests : IClassFixture<WebApplicationFactory<Program>
         Assert.Equal(expected.Length, CountOf(body, "\"openWorldHint\":false"));
     }
 
+    [Fact]
+    public async Task ToolsCall_EndsWithTaggedDocumentationLink()
+    {
+        var client = NewClient();
+
+        var initReq = new HttpRequestMessage(HttpMethod.Post, "/mcp") { Content = InitBody() };
+        AddMcpAccept(initReq);
+        var initResp = await client.SendAsync(initReq);
+        var sessionId = initResp.Headers.GetValues("Mcp-Session-Id").Single();
+
+        var notif = new HttpRequestMessage(HttpMethod.Post, "/mcp")
+        {
+            Content = new StringContent(
+                """{"jsonrpc":"2.0","method":"notifications/initialized"}""",
+                Encoding.UTF8,
+                "application/json"),
+        };
+        notif.Headers.Add("Mcp-Session-Id", sessionId);
+        AddMcpAccept(notif);
+        await client.SendAsync(notif);
+
+        var callReq = new HttpRequestMessage(HttpMethod.Post, "/mcp")
+        {
+            Content = new StringContent(
+                """{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list_sdk_classes","arguments":{}}}""",
+                Encoding.UTF8,
+                "application/json"),
+        };
+        callReq.Headers.Add("Mcp-Session-Id", sessionId);
+        AddMcpAccept(callReq);
+        var callResp = await client.SendAsync(callReq);
+        var body = await callResp.Content.ReadAsStringAsync();
+
+        Assert.True(callResp.IsSuccessStatusCode, $"tools/call got {(int)callResp.StatusCode}: {body}");
+        // The JSON encoder escapes '&', so the two query parameters are checked one by one.
+        Assert.Contains("https://www.visioforge.com/help/?utm_source=mcp", body);
+        Assert.Contains("utm_medium=list_sdk_classes", body);
+    }
+
     private static int CountOf(string text, string needle) =>
         (text.Length - text.Replace(needle, "").Length) / needle.Length;
 
