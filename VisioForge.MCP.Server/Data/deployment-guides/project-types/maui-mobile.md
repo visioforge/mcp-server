@@ -64,13 +64,13 @@ summary: Deploy VisioForge SDK with .NET MAUI for cross-platform mobile and desk
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.21" />
   </ItemGroup>
 
   <!-- Windows-specific packages -->
   <ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.16" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.16" />
   </ItemGroup>
 
   <!-- Android-specific packages -->

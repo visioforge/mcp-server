@@ -52,13 +52,13 @@ VisioForge SDK supports headless console applications for Windows, Linux, and ma
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+    <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.21" />
   </ItemGroup>
 
   <!-- Windows-specific packages -->
   <ItemGroup Condition="$([MSBuild]::IsOsPlatform('Windows'))">
-    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
-    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
+    <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.16" />
+    <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.16" />
   </ItemGroup>
 
   <!-- macOS-specific packages -->

@@ -56,13 +56,13 @@ Add the required VisioForge packages to your `.csproj` file:
 ```xml
 <ItemGroup>
   <!-- Core SDK (choose one based on your needs) -->
-  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.13" />
+  <PackageReference Include="VisioForge.DotNet.MediaBlocks" Version="2026.11.21" />
 
   <!-- Windows platform binaries -->
-  <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+  <PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.16" />
 
   <!-- FFmpeg/Libav codecs (compressed version) -->
-  <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
+  <PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.16" />
 </ItemGroup>
 ```
 
@@ -111,10 +111,10 @@ Choose the SDK package based on your use case:
 
 ```xml
 <!-- Required for Windows x64 -->
-<PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.12" />
+<PackageReference Include="VisioForge.CrossPlatform.Core.Windows.x64" Version="2026.11.16" />
 
 <!-- FFmpeg/Libav codecs (compressed) -->
-<PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.12" />
+<PackageReference Include="VisioForge.CrossPlatform.Libav.Windows.x64.UPX" Version="2026.11.16" />
 ```
 
 ### Optional Packages
@@ -123,15 +123,15 @@ Choose the SDK package based on your use case:
 <!-- Optional Packages -->
 <ItemGroup>
   <!-- Computer Vision (OpenCV) -->
-  <PackageReference Include="VisioForge.CrossPlatform.OpenCV.Windows.x64" Version="2026.11.12.2" />
+  <PackageReference Include="VisioForge.CrossPlatform.OpenCV.Windows.x64" Version="2026.11.16" />
 
   <!-- AWS S3 Integration -->
-  <PackageReference Include="VisioForge.CrossPlatform.AWS.Windows.x64" Version="2026.11.12" />
+  <PackageReference Include="VisioForge.CrossPlatform.AWS.Windows.x64" Version="2026.11.16" />
 
   <!-- Industrial Camera Support -->
-  <PackageReference Include="VisioForge.CrossPlatform.Basler.Windows.x64" Version="2026.11.12" />
-  <PackageReference Include="VisioForge.CrossPlatform.Spinnaker.Windows.x64" Version="2026.11.12" />
-  <PackageReference Include="VisioForge.CrossPlatform.AlliedVision.Windows.x64" Version="2026.11.12" />
+  <PackageReference Include="VisioForge.CrossPlatform.Basler.Windows.x64" Version="2026.11.16" />
+  <PackageReference Include="VisioForge.CrossPlatform.Spinnaker.Windows.x64" Version="2026.11.16" />
+  <PackageReference Include="VisioForge.CrossPlatform.AlliedVision.Windows.x64" Version="2026.11.16" />
 </ItemGroup>
 ```
 
